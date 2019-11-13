@@ -1,0 +1,63 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>=.=</title>
+		<style>
+			body {
+				overflow: hidden;
+				margin: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas width="600" height="800" Id="0"></canvas>
+		<script>
+			const w = document.getElementsByTagName("body")[0].clientWidth, h = window.innerHeight;
+			let canv = document.getElementById("0");
+			canv.width = w;
+			canv.height = h;
+			let ctx = canv.getContext("2d");
+			let food = {
+				x: 0,
+				y: 0,
+				r: 30
+			};
+			let snake = [];
+			let move = [[-1, 0], [0, 1], [1, 0], [0, -1]];
+			function init(){
+				ctx.fillStyle = "#777777";
+				ctx.fillRect(0, 0, w, h);
+				snake = [];
+				newSnakeBody();
+				updatefood();
+			}
+			function newSnakeBody(){
+				if(snake.length == 0){
+					body = {
+						x: Math.random() * w,
+						y: Math.random() * h,
+						r: 30,
+						dir: 2
+					};
+				}else{
+					snake.push(body);
+				}
+			}
+			function updatefood(){
+				let x = Math.random() * w, y = Math.random() * h;
+				food.x = x;
+				food.y = y;
+			}
+
+
+			function drawFood(){
+				init();
+				ctx.fillStyle = "rgb(00, 22, 44)";
+				ctx.fillRect(food.x, food.y, food.r, food.r);
+			}
+			init();
+			setInterval(drawFood, 1000 / 60);
+
+		</script>
+	</body>
+</html>
